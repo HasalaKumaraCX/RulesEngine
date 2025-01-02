@@ -27,16 +27,14 @@ namespace RulesEngine.HelperFunctions
         public static Type CreateAbstractClassType(dynamic input)
         {
             List<DynamicProperty> props = new List<DynamicProperty>();
-
-            if (input == null)
+            if (input is null)
             {
                 return typeof(object);
             }
-            if (!(input is ExpandoObject))
+            else if (!(input is ExpandoObject))
             {
                 return input.GetType();
             }
-
             else
             {
                 foreach (var expando in (IDictionary<string, object>)input)
